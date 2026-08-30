@@ -1,0 +1,742 @@
+<title>UrbanCool Plan Revision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+
+<style>
+  :root {
+    --paper:      #F0EFEA;
+    --card:       #FBFAF7;
+    --ink:        #22201D;
+    --ink-soft:   #4A473F;
+    --muted:      #6E6B63;
+    --line:       #DAD7CD;
+    --line-soft:  #E6E3DA;
+    --rule:       #C2402A;
+
+    --safe:    #2E6F9E;
+    --caution: #4F958D;
+    --warn:    #C97A16;
+    --danger:  #D9552B;
+    --extreme: #A32D1E;
+
+    --chip-ink: #FBFAF7;
+    --code-bg:  #23252B;
+    --code-ink: #DDE1E8;
+    --code-dim: #7D8694;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+    --measure: 68ch;
+    --wide: 1020px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:     #181715;
+      --card:      #211F1C;
+      --ink:       #EDEAE2;
+      --ink-soft:  #C6C1B6;
+      --muted:     #918C81;
+      --line:      #35322C;
+      --line-soft: #2B2824;
+      --rule:      #E0603F;
+
+      --safe:    #5C9CC6;
+      --caution: #6FB5AC;
+      --warn:    #E0A044;
+      --danger:  #EE7B4E;
+      --extreme: #D9614C;
+
+      --chip-ink: #181715;
+      --code-bg:  #131417;
+      --code-ink: #D7DBE2;
+      --code-dim: #6E7784;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:     #181715;
+    --card:      #211F1C;
+    --ink:       #EDEAE2;
+    --ink-soft:  #C6C1B6;
+    --muted:     #918C81;
+    --line:      #35322C;
+    --line-soft: #2B2824;
+    --rule:      #E0603F;
+
+    --safe:    #5C9CC6;
+    --caution: #6FB5AC;
+    --warn:    #E0A044;
+    --danger:  #EE7B4E;
+    --extreme: #D9614C;
+
+    --chip-ink: #181715;
+    --code-bg:  #131417;
+    --code-ink: #D7DBE2;
+    --code-dim: #6E7784;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .shell {
+    max-width: var(--wide);
+    margin: 0 auto;
+    padding: 56px 28px 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 52px;
+  }
+
+  p { max-width: var(--measure); }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---- masthead ---- */
+  .masthead { display: flex; flex-direction: column; gap: 14px; }
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  .masthead .standfirst {
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  .ramp { display: flex; height: 7px; border-radius: 2px; overflow: hidden; margin-top: 8px; }
+  .ramp span { flex: 1; }
+
+  .tally {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+  }
+  .tally div { background: var(--card); padding: 15px 18px; display: flex; flex-direction: column; gap: 3px; }
+  .tally .n {
+    font-family: var(--display);
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .tally .k { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted); }
+
+  /* ---- sections ---- */
+  section { display: flex; flex-direction: column; gap: 20px; }
+  .sec-head { display: flex; flex-direction: column; gap: 7px; border-top: 2px solid var(--rule); padding-top: 12px; }
+  .sec-head h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.6rem;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  h3 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.06rem;
+    letter-spacing: -0.005em;
+  }
+
+  /* ---- finding cards ---- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line-soft);
+    border-left: 4px solid var(--muted);
+    border-radius: 3px;
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card.blocked  { border-left-color: var(--extreme); }
+  .card.changed  { border-left-color: var(--warn); }
+  .card.ok       { border-left-color: var(--caution); }
+  .card.watch    { border-left-color: var(--danger); }
+
+  .card-top { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .card-top h3 { flex: 1; min-width: 260px; }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    color: var(--chip-ink);
+    white-space: nowrap;
+  }
+  .chip.blocked { background: var(--extreme); }
+  .chip.changed { background: var(--warn); }
+  .chip.ok      { background: var(--caution); }
+  .chip.watch   { background: var(--danger); }
+  .chip.info    { background: var(--safe); }
+
+  .card p { margin: 0; }
+  .card .why {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--muted);
+    letter-spacing: 0.01em;
+    max-width: none;
+  }
+
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+
+  ul { padding-left: 1.15em; max-width: var(--measure); display: flex; flex-direction: column; gap: 6px; }
+  li::marker { color: var(--muted); }
+
+  strong { font-weight: 600; }
+  em { font-style: italic; color: var(--ink-soft); }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.87em;
+    background: color-mix(in srgb, var(--muted) 15%, transparent);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+
+  pre {
+    background: var(--code-bg);
+    color: var(--code-ink);
+    border-radius: 3px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  pre .c { color: var(--code-dim); }
+
+  /* ---- table ---- */
+  .scroller { overflow-x: auto; border: 1px solid var(--line); border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; background: var(--card); }
+  th, td { text-align: left; padding: 11px 15px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  thead th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    background: color-mix(in srgb, var(--muted) 8%, transparent);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  td.line { font-weight: 600; width: 30%; }
+  td.verdict { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; white-space: nowrap; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; vertical-align: baseline; }
+  .d-ok { background: var(--caution); }
+  .d-ch { background: var(--warn); }
+  .d-bl { background: var(--extreme); }
+
+  /* ---- roles ---- */
+  .roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .role {
+    background: var(--card);
+    border: 1px solid var(--line-soft);
+    border-top: 3px solid var(--safe);
+    border-radius: 3px;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .role h3 { font-size: 0.98rem; }
+  .role .who { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .role ul { max-width: none; font-size: 0.94rem; gap: 5px; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+
+  a { color: var(--rule); text-underline-offset: 2px; }
+  a:focus-visible, :focus-visible { outline: 2px solid var(--rule); outline-offset: 2px; }
+
+  @media (max-width: 620px) {
+    .shell { padding: 40px 18px 72px; gap: 42px; }
+    body { font-size: 16px; }
+  }
+</style>
+
+<div class="shell">
+
+  <header class="masthead">
+    <div class="eyebrow">Coordination plan v3.2 · verified against the live key · 28 Aug 2026</div>
+    <h1>UrbanCool Plan Revision</h1>
+    <p class="standfirst">
+      Every API line is now settled against the live key, not the documentation. Ten hold. Two do not:
+      Abu Dhabi has no data, and neither does the forecast.
+    </p>
+    <div class="ramp" aria-hidden="true">
+      <span style="background:var(--safe)"></span>
+      <span style="background:var(--caution)"></span>
+      <span style="background:var(--warn)"></span>
+      <span style="background:var(--danger)"></span>
+      <span style="background:var(--extreme)"></span>
+    </div>
+    <div class="tally">
+      <div><span class="n">2</span><span class="k">blocking findings</span></div>
+      <div><span class="n">1.80 M</span><span class="k">credits left of 2 M</span></div>
+      <div><span class="n">~40 h</span><span class="k">data lag behind now</span></div>
+      <div><span class="n">2 days</span><span class="k">to the 30 Aug deadline</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Read this first</div>
+      <h2>Two things the key disproved</h2>
+    </div>
+
+    <div class="card blocked">
+      <div class="card-top">
+        <h3>Failure is silent — <code>Completed</code> does not mean you got data</h3>
+        <span class="chip blocked">read this one twice</span>
+      </div>
+      <p class="why">The single most dangerous behaviour in this API. Everything below is a consequence of it.</p>
+      <p>
+        A heatmap request for an area or a time the API has no data for is <strong>not</strong> rejected. It returns
+        <code>200</code>, it is assigned an <code>activity_id</code>, it polls through to
+        <code>status: "Completed"</code>, and it hands back an empty FeatureCollection. Nothing anywhere in the
+        response says “no data”. The only tell is the shape of <code>stats_data</code>:
+      </p>
+      <pre><code><span class="c">// data present</span>
+"stats_data": { "temperature_stats": {...}, "overall_temperature_distribution": [...], ... }
+
+<span class="c">// NO DATA — same 200, same "Completed"</span>
+"stats_data": { "activity_id": "...", "n_cells": 0 }
+"map_data":   { "type": "FeatureCollection", "features": [] }</code></pre>
+      <p>
+        Built naively, the dashboard shows a blank map with a green last-updated timestamp and no error in any log.
+        <strong>Assert on <code>map_data.features.length &gt; 0</code> before caching or rendering anything</strong> —
+        treat an empty result as a failure, not a success. This cost the first verification run a false pass on every
+        check; the harness now fails on zero tiles.
+      </p>
+    </div>
+
+    <div class="card blocked">
+      <div class="card-top">
+        <h3>Abu Dhabi has no data — the AOI must move</h3>
+        <span class="chip blocked">confirmed live</span>
+      </div>
+      <p>
+        Tested directly, at a date and hour proven to return data elsewhere in the same run:
+      </p>
+      <pre><code>masdar   2024-07-15 14:00Z   tiles=0    EMPTY
+phoenix  2024-07-15 14:00Z   tiles=74   mean=39.7 degC</code></pre>
+      <p>
+        The documentation was right after all — coverage is United States only, and the undocumented
+        <code>Hackathon</code> plan tier is no exception. The submission being accepted proved nothing, because of the
+        silent-empty behaviour above.
+      </p>
+      <p>
+        <strong>Move the AOI to downtown Phoenix.</strong> The swap is surgical: city name, polygon, and regulatory
+        hook. Four zones, thresholds, contracts, cloud, and the whole computer-vision workstream are untouched. The
+        polygon in <code>config/aoi.json</code> returns 74 tiles at 100 m and 198 at 60 m.
+      </p>
+      <ul>
+        <li><strong>The heat is real</strong> — 42.9 °C mean across the AOI on 26 Aug.</li>
+        <li><strong>The regulatory hook survives</strong> — Arizona ADOSH heat rules and Phoenix's contractor heat-safety ordinance replace the UAE midday break.</li>
+        <li><strong>The cool point improves</strong> — Phoenix publishes an official cooling-centre dataset.</li>
+        <li><strong>Mapillary coverage is denser</strong> in Phoenix than Masdar.</li>
+      </ul>
+    </div>
+
+    <div class="card blocked">
+      <div class="card-top">
+        <h3>The forecast returns nothing — “predictive” has to be re-grounded</h3>
+        <span class="chip blocked">confirmed live</span>
+      </div>
+      <p>
+        The 12-hour horizon is documented, and future timestamps are accepted at submit. They come back empty. So
+        does everything in the last ~40 hours:
+      </p>
+      <pre><code>now - 48h  (08-26 05:00Z)   tiles=74   mean=32.9 degC
+now - 36h  (08-26 17:00Z)   tiles=0    EMPTY
+now - 24h                   tiles=0    EMPTY
+now -  3h                   tiles=0    EMPTY
+now +  3h / +6h / +11h      tiles=0    EMPTY   <span class="c">// the "forecast"</span></code></pre>
+      <p>
+        The dataset ends at <strong>26 Aug 13:00Z</strong> and lags real time by roughly 40 hours. There is no live
+        reading and no forward projection to be had. Two consequences, neither fatal:
+      </p>
+      <ul>
+        <li>
+          <strong>The demo runs on a fixed date.</strong> Pin it to 26 Aug 2026 and say so plainly on screen. The plan
+          already committed to fixtures and to labelling stale data honestly — this is that policy, applied harder.
+        </li>
+        <li>
+          <strong>“When it peaks” comes from <code>time_of_measure</code>, not a forecast.</strong> It returns the
+          peak hour per tile over a chosen day and it works: <code>{"tile_id":0,"value":15}</code> — peak at 15:00
+          UTC. That is the panel line the demo story needs, sourced from real data rather than a projection that does
+          not exist.
+        </li>
+      </ul>
+      <p>
+        Describe the system as <em>heat-risk assessment with within-day peak prediction</em>. Claiming a live 12-hour
+        forecast in front of judges who know this API is a risk not worth taking.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Decisions 01 and 02</div>
+      <h2>What is confirmed and what moves</h2>
+    </div>
+
+    <div class="stack">
+      <div class="card ok">
+        <div class="card-top">
+          <h3>01 · Environmental &amp; Health Monitoring — confirmed</h3>
+          <span class="chip ok">agreed</span>
+        </div>
+        <p>
+          It is the right call from the list. Heat-risk alerting is the product, not a by-product, and it is the only
+          option that needs temperature, forecast and context layers together. Urban Design &amp; Public Space
+          Optimization as a secondary framing is fine — the hackathon rules say <em>“select one challenge, or combine
+          multiple.”</em>
+        </p>
+      </div>
+
+      <div class="card watch">
+        <div class="card-top">
+          <h3>One thing to check on the submission form</h3>
+          <span class="chip watch">verify</span>
+        </div>
+        <p>
+          The seven tracks published on the hackathon page are named differently from the seven options in hand:
+          <span class="eyebrow" style="text-transform:none;letter-spacing:0.02em">Resilient Cities &amp; Infrastructure · Future Buildings &amp; Energy · Industrial &amp; Enterprise · Government &amp; Environment · Model Designing · Agentic AI · Data Analysis &amp; Correlation</span>.
+        </p>
+        <p>
+          Neither list contains the other's names, so one of them is not the submission taxonomy. Open the submission
+          form and check which set it offers. If it is the published set, UrbanCool maps to
+          <strong>Government &amp; Environment</strong> first — outdoor-worker safety against a regulatory rule — with
+          <strong>Resilient Cities &amp; Infrastructure</strong> second. Five minutes now; a mis-filed submission is
+          not recoverable on 30 August.
+        </p>
+      </div>
+
+      <div class="card changed">
+        <div class="card-top">
+          <h3>02 · City — Abu Dhabi is not available; move to Phoenix</h3>
+          <span class="chip changed">changed</span>
+        </div>
+        <p>
+          Three published sources agree that coverage is United States only, so this is a constraint to design around
+          rather than a question to test. Redraw the polygon on downtown Phoenix and re-pick the four zones against
+          it; a candidate 1.1 × 0.9 km polygon is already in <code>config/aoi.json</code>.
+        </p>
+        <p>
+          Everything downstream — zone logic, thresholds, contracts, cloud, computer vision — is city-independent and
+          was never blocked by this.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 03, revised</div>
+      <h2>All twelve API lines, answered</h2>
+    </div>
+    <p>
+      Everything below was exercised against the live key on 28 Aug. Ten checks pass, two fail. Re-runnable at any
+      time with <code>npm run verify</code>, which writes the same table to
+      <code>out/verification-report.md</code>.
+    </p>
+
+    <div class="scroller">
+      <table>
+        <thead>
+          <tr><th>Plan line</th><th>Verdict</th><th>What the live key returned</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="line">Authentication</td>
+            <td class="verdict"><span class="dot d-ok"></span>holds</td>
+            <td><code>api-key</code> request header against <code>https://api.fortyguard.com</code>. A call without it returns a clean <code>401</code> with <code>details.message</code>. Errors are shaped <code>{error, status_code, details:{message}}</code> — Essam can key the fallback off that.</td>
+          </tr>
+          <tr>
+            <td class="line">Endpoints</td>
+            <td class="verdict"><span class="dot d-ok"></span>answered</td>
+            <td>Six, as expected: <code>POST /v1/heatmap</code>, <code>POST /v1/env_params</code>, <code>POST /v1/satellite</code>, <code>POST /v1/streetview</code>, <code>POST /v1/heat_intelligence</code>, <code>GET /v1/status/{id}</code>. Satellite, Street View and Heat Intelligence are <strong>Premium only</strong> — not on our plan.</td>
+          </tr>
+          <tr>
+            <td class="line">Async pattern</td>
+            <td class="verdict"><span class="dot d-ok"></span>holds</td>
+            <td>Submit returns <code>data.activity_id</code>; poll <code>GET /v1/status/{id}</code> until <code>data.status</code> is <code>Completed</code> or <code>Failed</code>. Both are terminal.</td>
+          </tr>
+          <tr>
+            <td class="line">Request schema</td>
+            <td class="verdict"><span class="dot d-ch"></span>correction</td>
+            <td><code>polygon_aoi</code> must be a GeoJSON <strong>FeatureCollection</strong> wrapping a Feature wrapping the Polygon — not the bare Polygon in section 02. See the correction below.</td>
+          </tr>
+          <tr>
+            <td class="line">Max AOI &amp; granularity</td>
+            <td class="verdict"><span class="dot d-ok"></span>measured</td>
+            <td>Our ~1 km² AOI yields <strong>74 tiles at 100 m</strong> and <strong>198 at 60 m</strong>; a 5.5 × 4.5 km box yielded 2,288. Nowhere near the 10 mi² ceiling. <strong>Use 60 m</strong> — four zones separate far better across 198 tiles than 74.</td>
+          </tr>
+          <tr>
+            <td class="line">Credits</td>
+            <td class="verdict"><span class="dot d-ch"></span>drop the rule</td>
+            <td>Plan tier is <strong><code>Hackathon</code></strong> — undocumented, not in the plan table. <strong>2,000,000 credits</strong>, key valid to <strong>1 Oct 2026</strong>. Measured cost: <strong>4,220</strong> per heatmap call, <strong>2,900</strong> per env_params call — about 470 heatmaps' worth. Verification spent 200 k (10%); 1.80 M remain. The 60-calls-a-week rule serves no purpose.</td>
+          </tr>
+          <tr>
+            <td class="line">Beyond air temperature</td>
+            <td class="verdict"><span class="dot d-ch"></span>better, with a catch</td>
+            <td>All <strong>15</strong> parameters returned, not the documented 3-parameter cap — humidity, heat index, wet bulb, AQI, solar. <strong>Open-Meteo is not needed.</strong> The catch: <code>env_params</code> takes <code>temperature</code> as an <em>input</em>, and derives heat index from whatever you pass. Feed it the real tile temperature or the output is confidently wrong.</td>
+          </tr>
+          <tr>
+            <td class="line">Historical range</td>
+            <td class="verdict"><span class="dot d-ok"></span>generous</td>
+            <td>Back to <strong>2019-01-01</strong>, far beyond the seven days we asked for. <code>filter_type: 4</code> (range of days) <strong>works</strong> despite the Known Limitations page omitting it — a week of history is <strong>one call</strong>, not seven.</td>
+          </tr>
+          <tr>
+            <td class="line">Forecast horizon</td>
+            <td class="verdict"><span class="dot d-bl"></span>no data</td>
+            <td><strong>Accepted at submit, empty on return</strong>, at +3 h, +6 h and +11 h alike. The dataset ends 26 Aug 13:00Z, ~40 h behind now. There is no live value and no forward projection. Use <code>time_of_measure</code> for peak hour instead — see the finding above.</td>
+          </tr>
+          <tr>
+            <td class="line">Analysis layer</td>
+            <td class="verdict"><span class="dot d-ch"></span>two shapes</td>
+            <td>“Snapshot” is <code>tcm</code> (the default). <strong>The two layer families return different tile properties</strong> — parse accordingly:<br><code>tcm</code> → <code>{tile_id, average_temperature, min_temperature, max_temperature}</code><br><code>exceedance</code>/<code>time_of_measure</code>/<code>persistence</code> → <code>{tile_id, value}</code> in hours, with <code>stats_data</code> carrying <code>analytic_type, units, min, max, mean</code>.</td>
+          </tr>
+          <tr>
+            <td class="line">Rate limits &amp; latency</td>
+            <td class="verdict"><span class="dot d-ok"></span>measured</td>
+            <td>Twelve concurrent status calls, <strong>no <code>429</code></strong>. Jobs complete in <strong>2–32 s</strong> (often on the first poll). A 5 s poll with a 2-minute ceiling is comfortably safe; the 30-minute cache refresh is far more conservative than needed.</td>
+          </tr>
+          <tr>
+            <td class="line">Failure behaviour</td>
+            <td class="verdict"><span class="dot d-ok"></span>holds</td>
+            <td><code>400</code> bad input · <code>401</code> missing key · <code>429</code> rate limit · <code>500</code> server. Serving the last cached value with a visible timestamp stays the right fallback.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 05, corrections</div>
+      <h2>Four things to fix before Essam builds against the contract</h2>
+    </div>
+    <p>
+      The contracts are frozen, which is right — but four details in them will not survive contact with the API or
+      with the demo. Cheaper to fix now than at integration.
+    </p>
+
+    <div class="stack">
+      <div class="card changed">
+        <div class="card-top">
+          <h3>1 · The AOI needs a FeatureCollection wrapper</h3>
+          <span class="chip changed">will 400</span>
+        </div>
+        <p>The polygon in section 02 is a bare Polygon. The API requires the full wrapper:</p>
+        <pre><code>"polygon_aoi": {
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "properties": {},
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [[ <span class="c">/* lon, lat — closed ring */</span> ]]
+    }
+  }]
+}</code></pre>
+        <p class="why">Handled by <code>featureCollection()</code> in <code>src/fg/client.js</code> — pass a bare ring, get a valid payload.</p>
+      </div>
+
+      <div class="card changed">
+        <div class="card-top">
+          <h3>2 · <code>centroid</code> and <code>coordinates</code> disagree on axis order</h3>
+          <span class="chip changed">silent bug</span>
+        </div>
+        <p>
+          The AOI ring is longitude-first (correct GeoJSON). The dashboard contract's
+          <code>"centroid": [24.4297, 54.6168]</code> is latitude-first. Both are “right” by some convention, which is
+          exactly why this kind of mismatch survives review and then puts a zone in the wrong hemisphere. Pick one and
+          write it into the field name — <code>centroid_lat_lon</code> ends the argument permanently.
+        </p>
+      </div>
+
+      <div class="card changed">
+        <div class="card-top">
+          <h3>3 · The worked example does not match the contract, and proves nothing either way</h3>
+          <span class="chip changed">two problems</span>
+        </div>
+        <p>
+          Section 04 computes <code>51.4 + 2 + 3 + 0 − 0 = 56.4</code>. The section 05 contract for the same zone says
+          <code>"risk_score": 53.4</code> — which is <code>51.4 + 2</code>, the worker penalty dropped, even though
+          <code>drivers</code> lists <code>"outdoor workers present"</code>. One of the two is wrong.
+        </p>
+        <p>
+          The deeper problem: a heat index of 51.4 °C is <em>already</em> Extreme before a single contextual point is
+          added. The demo's centrepiece zone therefore demonstrates nothing about the contextual engine — the clock
+          alone would produce the same answer. Pick a worked example where context does the work:
+        </p>
+        <pre><code><span class="c">// Z-02, 13:40 — context moves the level</span>
+heat_index      49.0   <span class="c">-> Danger on its own</span>
++ peak_hour     +2.0
++ worker        +3.0
+= risk_score    54.0   <span class="c">-> Extreme</span></code></pre>
+        <p>Now the zone is Extreme <em>because</em> workers are present at peak hour. That is the story the demo is built to tell.</p>
+      </div>
+
+      <div class="card changed">
+        <div class="card-top">
+          <h3>4 · The timestamps are in the wrong timezone for the story</h3>
+          <span class="chip changed">demo-breaking</span>
+        </div>
+        <p>
+          The demo is a foreman at <strong>13:40 local</strong>, at the hottest part of the day. The contract stamps
+          that as <code>"2026-08-28T13:40:00Z"</code> — but in Phoenix (UTC−7) 13:40 local is
+          <code>20:40Z</code>, and <code>13:40Z</code> is 06:40 in the morning. The
+          <code>"forecast_peak_time": "…T15:00:00Z"</code> lands at 08:00 local, which is not a heat peak anywhere.
+        </p>
+        <p>
+          Store UTC, render local, and put the offset in the payload so the dashboard cannot get it wrong.
+          <code>/v1/env_params</code> hands you <code>metadata.timezone</code> and
+          <code>metadata.timezone_offset_hours</code> — use them rather than hardcoding. Note that
+          <code>time_of_measure</code> returns its peak hour in <strong>UTC</strong>, so it needs the same treatment.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Section 04, one simplification</div>
+      <h2>FortyGuard computes the heat index for you</h2>
+    </div>
+    <div class="card ok">
+      <div class="card-top">
+        <h3>Stage one gets shorter, and better sourced</h3>
+        <span class="chip ok">confirmed</span>
+      </div>
+      <p>
+        Stage one plans to compute the heat index from temperature and humidity using the NWS regression.
+        <code>/v1/env_params</code> returns <code>heat_index_celsius</code> directly — so the value comes from the
+        same API as the temperature, with no second source to explain and no regression to defend.
+      </p>
+      <p>
+        Our plan allows three parameters per request. Take
+        <code>heat_index_celsius</code>, <code>relative_humidity_percent</code> and
+        <code>wet_bulb_temperature_celsius</code>. The third is worth the slot: wet-bulb temperature is the measure
+        occupational heat-stress standards are actually written against, and having it on the evidence slide is a
+        stronger answer to “why these thresholds” than a citation alone.
+      </p>
+      <p>
+        The five bands themselves are sound — <code>27 / 32 / 39 / 51 °C</code> are the NWS heat-index categories
+        converted from <code>80 / 90 / 103 / 125 °F</code>. Keep them, and cite the conversion.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Nobody is blocked</div>
+      <h2>What each person does next</h2>
+    </div>
+
+    <div class="roles">
+      <div class="role">
+        <span class="who">Shahad</span>
+        <h3>Computer vision — unblocked, start now</h3>
+        <ul>
+          <li>The contract in section 05 is unaffected by the city decision. Build against it.</li>
+          <li>Satellite and Street View segmentation are <strong>Premium only</strong> — FortyGuard will not supply shade percentage. Decision 07 was right: our own CV is load-bearing, not a nice-to-have.</li>
+          <li>The AOI is settled — pull Mapillary for the downtown Phoenix bounding box, not Masdar.</li>
+          <li>Pin the fixed demo stills to <strong>26 Aug 2026</strong> so the vision output and the temperature data describe the same day.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <span class="who">Essam · backend</span>
+        <h3>Poll worker — unblocked, start now</h3>
+        <ul>
+          <li>Submit-and-poll is confirmed. <code>src/fg/client.js</code> already implements it against the real shapes.</li>
+          <li>Cache on <code>{aoi, timestamp, analytic_type, granularity}</code>.</li>
+          <li>Parse <code>data.result.map_data</code> (GeoJSON tiles) and <code>data.result.stats_data</code> (min/mean/max/σ plus distributions).</li>
+          <li>Key the fallback off <code>details.message</code>.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <span class="who">Experience</span>
+        <h3>Recommendation copy — one dependency</h3>
+        <ul>
+          <li>The recommendation codes are city-independent. Write them now.</li>
+          <li><code>r_stop_work</code> is the exception — its wording cites a specific rule, so it waits on decision 02.</li>
+          <li>If the city moves, <code>r_nearest_cool_point</code> gets <em>better</em>: Phoenix publishes an official cooling-centre dataset.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div class="eyebrow">Settled, and re-runnable</div>
+      <h2>The verification run</h2>
+    </div>
+    <p>
+      Already run against the live key. Ten checks pass; the two failures are the Masdar coverage result and the empty
+      forecast, both recorded deliberately rather than papered over.
+    </p>
+    <pre><code>npm run verify            <span class="c"># ten checks, ~30 k credits</span>
+npm run verify:usage      <span class="c"># plan + balance only, spends nothing</span>
+node scripts/coverage-probe.js   <span class="c"># is a given AOI covered at all?</span></code></pre>
+    <p>
+      <code>coverage-probe.js</code> is the one to keep. Any new area of interest goes through it first — it submits,
+      polls, and reports the tile count, so an uncovered AOI is caught in a minute instead of surfacing as a blank map
+      on stage. Given how the API reports absence, that check belongs in front of every location decision from here.
+    </p>
+  </section>
+
+  <footer>
+    <span>UrbanCool · coordination plan v3.2</span>
+    <span>Verified against the live key, 28 Aug 2026</span>
+    <span>Submission 30 Aug, 23:59 GST</span>
+    <span>10 of 12 checks pass · re-run with npm run verify</span>
+  </footer>
+
+</div>

@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug: full verification",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/verify-api.js",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Debug: plan + credits only",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/verify-api.js",
+      "args": ["--only=usage"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Debug: coverage probe",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/scripts/coverage-probe.js",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Debug: current file",
+      "type": "node",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

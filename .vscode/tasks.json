@@ -1,0 +1,46 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Check plan + credits (free)",
+      "detail": "Plan tier, credit balance and key expiry. Spends nothing.",
+      "type": "shell",
+      "command": "npm run verify:usage",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "Run full verification",
+      "detail": "All ten checks against the live key. ~30k credits, ~2 min.",
+      "type": "shell",
+      "command": "npm run verify",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true },
+      "group": { "kind": "test", "isDefault": true }
+    },
+    {
+      "label": "Probe AOI coverage",
+      "detail": "Does a given area have data at all? Run this before committing to any new AOI.",
+      "type": "shell",
+      "command": "npm run coverage",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    },
+    {
+      "label": "Rebuild the plan PDF",
+      "detail": "Re-renders the coordination plan to out/UrbanCool-Plan-Revision.pdf.",
+      "type": "shell",
+      "command": "npm run pdf -- \"${input:htmlPath}\" \"out/UrbanCool-Plan-Revision.pdf\"",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "clear": true }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "htmlPath",
+      "type": "promptString",
+      "description": "Path to the plan HTML to render",
+      "default": "docs/plan-revision.html"
+    }
+  ]
+}
