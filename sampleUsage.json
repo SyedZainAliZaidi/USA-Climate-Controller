@@ -1,0 +1,10 @@
+{
+  "plan": "Hackathon",
+  "credits_total": 2000000,
+  "credits_used": 200000,
+  "credits_remaining": 1800000,
+  "cost_per_heatmap_call": 4220,
+  "cost_per_env_params_call": 2900,
+  "key_expiry": "2026-10-01",
+  "note": "Figures mirror the values recorded in the coordination plan verification run on 2026-08-28. This file is used whenever DEMO_MODE is on or a live usage call fails."
+}

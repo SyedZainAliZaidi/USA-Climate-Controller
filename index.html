@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Environmental and Health Monitoring App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Environmental and Health Monitoring App</h1>
+      <p class="subtitle">Heat risk alerts for outdoor workers, built on the FortyGuard heat data API.</p>
+    </div>
+    <div id="statusBadge" class="badge">Loading...</div>
+  </header>
+
+  <main class="layout">
+    <section class="summaryCard" id="summaryCard">
+      <h2>Tomorrow's Outlook</h2>
+      <p id="summaryHeadline">Loading forecast summary...</p>
+      <div class="summaryMeta">
+        <span id="summaryTemp"></span>
+        <span id="summaryRisk"></span>
+      </div>
+      <p class="dataNote" id="dataNote"></p>
+    </section>
+
+    <section class="mapCard">
+      <div class="cardHeader">
+        <h2>Street Level Heat Map</h2>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div id="heatGrid" class="heatGrid">Loading map...</div>
+    </section>
+
+    <section class="alertsCard">
+      <div class="cardHeader">
+        <h2>Safety Recommendations</h2>
+      </div>
+      <ul id="recommendationList" class="recommendationList"></ul>
+    </section>
+
+    <section class="tileListCard">
+      <div class="cardHeader">
+        <h2>Alert Detail by Tile</h2>
+        <input id="riskFilter" type="text" placeholder="Filter by risk, e.g. high" />
+      </div>
+      <div class="tableWrapper">
+        <table id="tileTable">
+          <thead>
+            <tr>
+              <th>Tile</th>
+              <th>Avg Temp</th>
+              <th>Peak Hour</th>
+              <th>Exceedance (h)</th>
+              <th>Persistence (h)</th>
+              <th>Risk</th>
+            </tr>
+          </thead>
+          <tbody id="tileTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="usageCard">
+      <h2>API Usage</h2>
+      <div id="usageBody">Loading usage...</div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Dashboard, alerts and testing by Syed Zain. Data verification and FortyGuard client by the project team.</p>
+  </footer>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

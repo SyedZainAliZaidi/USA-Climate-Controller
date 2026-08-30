@@ -1,0 +1,43 @@
+{
+  "phoenix": {
+    "name": "Downtown Phoenix",
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": { "aoi_name": "downtown_phoenix" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [-112.0850, 33.4400],
+            [-112.0620, 33.4400],
+            [-112.0620, 33.4620],
+            [-112.0850, 33.4620],
+            [-112.0850, 33.4400]
+          ]]
+        }
+      }
+    ]
+  },
+  "masdar": {
+    "name": "Masdar City, documented refusal, no data",
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "properties": { "aoi_name": "masdar_city" },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[
+            [54.3900, 24.4250],
+            [54.4100, 24.4250],
+            [54.4100, 24.4450],
+            [54.3900, 24.4450],
+            [54.3900, 24.4250]
+          ]]
+        }
+      }
+    ]
+  },
+  "active": "phoenix"
+}
