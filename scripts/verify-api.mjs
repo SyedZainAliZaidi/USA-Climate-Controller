@@ -41,7 +41,7 @@ const args = process.argv.slice(2);
 const only = (args.find((a) => a.startsWith("--only=")) || "").split("=")[1];
 const rateProbe = args.includes("--rate-probe");
 
-const AOI = JSON.parse(fs.readFileSync(path.join(ROOT, "aoi.json"), "utf8"));
+const AOI = JSON.parse(fs.readFileSync(path.join(ROOT, "config", "aoi.json"), "utf8"));
 
 const results = [];
 function record(id, planLine, status, detail, evidence) {

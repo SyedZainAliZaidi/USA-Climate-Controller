@@ -7,7 +7,7 @@
 // to be probed for explicitly, per area, before anyone builds on it.
 //
 //   node scripts/coverage-probe.mjs            # masdar vs phoenix
-//   node scripts/coverage-probe.mjs dubai      # add any named AOI from aoi.json
+//   node scripts/coverage-probe.mjs dubai      # add any named AOI from config/aoi.json
 
 import fs from "node:fs";
 import path from "node:path";
@@ -32,7 +32,7 @@ if (!API_KEY) {
   process.exit(2);
 }
 
-const AOI = JSON.parse(fs.readFileSync(path.join(ROOT, "aoi.json"), "utf8"));
+const AOI = JSON.parse(fs.readFileSync(path.join(ROOT, "config", "aoi.json"), "utf8"));
 const names = process.argv.slice(2).length
   ? process.argv.slice(2)
   : Object.keys(AOI).filter((k) => AOI[k] && AOI[k].type === "FeatureCollection");
@@ -50,7 +50,7 @@ console.log(`coverage probe — ${dateTime.start_date} ${dateTime.start_time}Z, 
 for (const name of names) {
   const aoi = AOI[name];
   if (!aoi) {
-    console.log(`${name.padEnd(9)} — not in aoi.json`);
+    console.log(`${name.padEnd(9)} — not in config/aoi.json`);
     continue;
   }
   const sub = await submitHeatmap(API_KEY, { aoi, dateTime, granularity: 100 });
