@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node server.js",
     "test": "node tests/runTests.js",
-    "generateSample": "node data/generateSample.js"
+    "generateSample": "node data/generateSample.js",
+    "verify": "node scripts/verify-api.mjs",
+    "verify:usage": "node scripts/verify-api.mjs --only=usage",
+    "verify:rate": "node scripts/verify-api.mjs --rate-probe",
+    "coverage": "node scripts/coverage-probe.mjs",
+    "pdf": "node scripts/make-pdf.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
